@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Playing Cards Deck Display">
+    <link rel="stylesheet" href="style.css">
+    <title>Playing Cards Deck</title>
+</head>
+<body>
+    <main>
+        <div class="deck" id="deck"></div>
+    </main>
+
+    <script>
+        const suits = ['♠', '♥', '♦', '♣'];
+        const values = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+        const deck = document.getElementById('deck');
+
+        suits.forEach(suit => {
+            values.forEach(value => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.setAttribute('data-card', value);
+                card.setAttribute('data-suit', suit);
+
+                if (['J', 'Q', 'K'].includes(value)) {
+                    card.innerHTML = `<span class="item">${value}${suit}</span>`;
+                } else {
+                    card.innerHTML = Array(parseInt(value) || 1)
+                        .fill(`<span class="item">${suit}</span>`)
+                        .join('');
+                }
+
+                deck.appendChild(card);
+            });
+        });
+    </script>
+</body>
+</html>
